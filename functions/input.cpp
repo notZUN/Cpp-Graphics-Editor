@@ -9,8 +9,15 @@ void input(){
     if(event.type == SDL_QUIT) running = false;
     if(event.type == SDL_KEYDOWN) 
       switch(event.key.keysym.sym){
-        case SDLK_z:
-
+        case SDLK_f:
+          if(fullscreen){
+            SDL_SetWindowFullscreen(window, 0);
+            fullscreen = 0;
+          }
+          else{
+            SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+            fullscreen = 1;
+          }
         break;
       }
   }

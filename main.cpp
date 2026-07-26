@@ -10,6 +10,7 @@ bool running = true;
 uint8_t screen[window_width * window_height];
 uint16_t final_screen[window_width * window_height];
 SDL_Event event;
+bool fullscreen = 0;
 
 int main(int argc, char* argv[]){
     const uint8_t* keystate = SDL_GetKeyboardState(NULL);
@@ -69,8 +70,8 @@ int main(int argc, char* argv[]){
     input();
         
   //painting&conversion
-    camera_paint();
-    camera_conversion();
+    screen_paint();
+    screen_conversion();
 
         
     SDL_UpdateTexture(texture, NULL, final_screen, window_width * sizeof(short));

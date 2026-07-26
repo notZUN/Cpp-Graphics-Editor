@@ -18,11 +18,12 @@ extern bool running;
 extern uint8_t screen[window_width * window_height];
 extern uint16_t final_screen[window_width * window_height];
 extern const bool font[26][65];
+extern bool fullscreen;
 
 //functions
 extern void input();
-extern void camera_paint();
-extern void camera_conversion();
+extern void screen_paint();
+extern void screen_conversion();
 extern void text(std::string s, short x, short y, uint8_t col, uint8_t size);
 
 #endif
