@@ -19,7 +19,19 @@ void input(){
             fullscreen = 1;
           }
         break;
+        case SDLK_a:
+          if(set_color){
+            set_color = 0; 
+          }
+          else{
+            set_color = 1;
+            new_color_rgb[0] = 0;
+            new_color_rgb[1] = 0;
+            new_color_rgb[2] = 0;
+          }
+        break;
       }
+    
   }
 }
 
