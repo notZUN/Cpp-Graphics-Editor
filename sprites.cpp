@@ -11,7 +11,8 @@ std::vector<uint16_t> pallete = {
     65504, //yellow
     21130, //gray
     63488, //red 
-    2016 //green
+    2016, //green
+    25324 //light gray
 };
 
 const bool font_num[10][65] = {

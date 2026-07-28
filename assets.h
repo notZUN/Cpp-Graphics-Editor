@@ -6,6 +6,10 @@
 #include <vector>
 
 //class 
+enum class State {
+  canvas,
+  new_color
+};
 
 //arrays & variables
 extern SDL_Window* window;
@@ -19,13 +23,16 @@ extern uint8_t screen[window_width * window_height];
 extern uint16_t final_screen[window_width * window_height];
 extern const bool font[26][65];
 extern bool fullscreen;
-extern bool set_color;
+extern State state;
 extern int canvas_size_x;
 extern int canvas_size_y;
 extern std::vector<uint16_t> canvas;
 extern std::vector<uint16_t> colors;
 extern uint16_t new_color_rgb[3];
 extern const bool font_num[10][65];
+
+extern int set;
+extern int canvas_set_x, canvas_set_y;
 
 //functions
 extern void input();

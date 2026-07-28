@@ -11,7 +11,7 @@ uint8_t screen[window_width * window_height];
 uint16_t final_screen[window_width * window_height];
 SDL_Event event;
 bool fullscreen = 0;
-bool set_color = 0;
+State state = State::canvas;
 uint16_t new_color_rgb[3];
 std::vector<uint16_t> colors = {
   0, //black
@@ -30,6 +30,8 @@ std::vector<uint16_t> canvas = {
   255, 255, 255, 255, 255, 
   255, 255, 255, 255, 255 
 };
+int set = 0;
+int canvas_set_x = 0, canvas_set_y = 0;
 
 int main(int argc, char* argv[]){
     const uint8_t* keystate = SDL_GetKeyboardState(NULL);

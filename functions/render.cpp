@@ -2,7 +2,7 @@
 #include<iostream>
 #include<string>
 
-void paint_set_color_color(int part, int color, float part_start_x, float part_x, float part_start_y, float part_y){
+void paint_new_color_color(int part, int color, float part_start_x, float part_x, float part_start_y, float part_y){
   for(uint16_t i = part_start_y; i < part_start_y + part_y; i++){
     for(uint16_t j = part_start_x + part_x * part; j < part_start_x + part_x * (part+1); j++){
       screen[i*window_width+j] = color;
@@ -10,21 +10,23 @@ void paint_set_color_color(int part, int color, float part_start_x, float part_x
   }
 }
 
-void paint_set_color(float size_x, float size_y){
+void paint_new_color(float size_x, float size_y){
   float part_start_x = window_width / size_x;
   float part_end_x = window_width - part_start_x;
-  float part_x = (part_end_x - part_start_x)/7;
+  float part_x = (part_end_x - part_start_x)/4;
   float part_start_y = window_height / size_y;
   float part_end_y = window_height - part_start_y;
-  float part_y = (part_end_y - part_start_y)/3;
+  float part_y = (part_end_y - part_start_y)/2;
   
-  for(uint16_t i = part_start_y; i < part_start_y + part_y * 3; i++){
-    for(uint16_t j = part_start_x; j < part_start_x + part_x * 7; j++){
-      screen[i*window_width+j] = 5;
+  for(uint16_t i = part_start_y; i < part_start_y + part_y * 2; i++){
+    for(uint16_t j = part_start_x; j < part_start_x + part_x * 4; j++){
+      screen[i*window_width+j] = 8;
     }
   }
 
-  paint_set_color_color(0, 6, part_start_x, part_x, part_start_y, part_y);
+  paint_new_color_color(0, 6, part_start_x, part_x, part_start_y, part_y);
+  paint_new_color_color(1, 7, part_start_x, part_x, part_start_y, part_y);
+  paint_new_color_color(2, 2, part_start_x, part_x, part_start_y, part_y);
   
 };
 
@@ -44,6 +46,11 @@ void paint_canvas(){
             else screen[i2*window_width+j2] = 5;
         }
       }
+      if(i == canvas_set_y && j == canvas_set_x){
+        for(int l = 0; l < part_x; l++){
+          screen[int((start_y + (i+1) * part_y - 1)*window_width + start_x + j * part_x + l)] = 6; 
+        }
+      }
     }
   }
 };
@@ -54,9 +61,9 @@ void screen_paint(){
       screen[i*window_width+j] = 1;
     }
   }
-  if(set_color)paint_set_color(6, 3);
 
   paint_canvas();
+  if(state == State::new_color) paint_new_color(4, 4);
 }
 
 void screen_conversion(){
