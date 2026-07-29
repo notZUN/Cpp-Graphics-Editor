@@ -7,7 +7,7 @@ SDL_Window* window = nullptr;
 SDL_Renderer* render = nullptr;
 SDL_Texture* texture = nullptr;
 bool running = true;
-uint8_t screen[window_width * window_height];
+std::pair<bool, uint8_t> screen[window_width * window_height];
 uint16_t final_screen[window_width * window_height];
 SDL_Event event;
 bool fullscreen = 0;
@@ -15,20 +15,20 @@ State state = State::canvas;
 uint16_t new_color_rgb[3];
 std::vector<uint16_t> colors = {
   0, //black
-  65535, //white
+  65535, //white 
   31, //blue
-  2047, //light blue 
-  65504 //yellow
+  2047, //light blue
 };
+uint16_t select_color = 0;
 
 int canvas_size_x = 5;
 int canvas_size_y = 5;
 std::vector<uint16_t> canvas = {
+  255, 1, 255, 1, 255, 
+  255, 1, 255, 1, 255, 
   255, 255, 255, 255, 255, 
-  255, 255, 255, 255, 255, 
-  255, 255, 255, 255, 255, 
-  255, 255, 255, 255, 255, 
-  255, 255, 255, 255, 255 
+  255, 1, 255, 1, 255, 
+  255, 255, 1, 255, 255 
 };
 int set = 0;
 int canvas_set_x = 0, canvas_set_y = 0;
@@ -79,7 +79,8 @@ int main(int argc, char* argv[]){
     //cleaning array of camera
     for(uint16_t i = 0; i < window_height; i++){
         for(uint16_t j = 0; j < window_width; j++){
-        screen[i*window_width+j] = 0;
+        screen[i*window_width+j].first = 1;
+        screen[i*window_width+j].second = 0;
       }
     }
 

@@ -19,7 +19,7 @@ extern SDL_Texture* texture;
 constexpr short window_height = 360, window_width = 640;
 extern std::vector<uint16_t> pallete;
 extern bool running;
-extern uint8_t screen[window_width * window_height];
+extern std::pair<bool, uint8_t> screen[window_width * window_height];
 extern uint16_t final_screen[window_width * window_height];
 extern const bool font[26][65];
 extern bool fullscreen;
@@ -30,7 +30,7 @@ extern std::vector<uint16_t> canvas;
 extern std::vector<uint16_t> colors;
 extern uint16_t new_color_rgb[3];
 extern const bool font_num[10][65];
-
+extern uint16_t select_color;
 extern int set;
 extern int canvas_set_x, canvas_set_y;
 

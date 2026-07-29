@@ -9,10 +9,10 @@ std::vector<uint16_t> pallete = {
     31, //blue
     2047, //light blue 
     65504, //yellow
-    21130, //gray
+    10533, //dark gray
     63488, //red 
     2016, //green
-    25324 //light gray
+    21130 //gray
 };
 
 const bool font_num[10][65] = {
