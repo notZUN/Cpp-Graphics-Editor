@@ -50,6 +50,10 @@ void input(){
         case SDLK_q:
           colors.erase(colors.begin() + colors.size() - 1);
         break;
+
+        case SDLK_s: 
+          canvas[canvas_set_y*canvas_size_y+canvas_set_x] = select_color;
+        break;
       }
       else if(state == State::new_color)switch(event.key.keysym.sym){
           case SDLK_l:
