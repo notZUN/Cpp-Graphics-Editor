@@ -15,20 +15,21 @@ State state = State::canvas;
 uint16_t new_color_rgb[3];
 std::vector<uint16_t> colors = {
   0, //black
-  65535, //white 
+  65535, //white
   31, //blue
-  2047, //light blue
+  2047, //light blue 
+  65504 //yellow
 };
 uint16_t select_color = 0;
 
 int canvas_size_x = 5;
 int canvas_size_y = 5;
 std::vector<uint16_t> canvas = {
-  255, 1, 255, 1, 255, 
-  255, 1, 255, 1, 255, 
-  255, 255, 255, 255, 255, 
-  255, 1, 255, 1, 255, 
-  255, 255, 1, 255, 255 
+  2,2,2,2,4,
+  1,1,2,2,2,
+  2,2,2,1,2,
+  2,2,1,1,1,
+  2,2,2,2,2 
 };
 int set = 0;
 int canvas_set_x = 0, canvas_set_y = 0;
@@ -93,6 +94,7 @@ int main(int argc, char* argv[]){
         
   //painting&conversion
     screen_paint();
+
     screen_conversion();
 
         

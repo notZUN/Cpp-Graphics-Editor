@@ -39,5 +39,6 @@ extern void input();
 extern void screen_paint();
 extern void screen_conversion();
 extern void text(std::string s, short x, short y, uint8_t col, uint8_t size);
+extern void save();
 
 #endif

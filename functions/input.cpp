@@ -42,10 +42,11 @@ void input(){
           
         case SDLK_a:
           state = State::new_color;
+          set = 0;
           new_color_rgb[0] = 0;
           new_color_rgb[1] = 0;
           new_color_rgb[2] = 0;
-          colors.push_back(31);
+          colors.push_back(0);
         break;
         case SDLK_q:
           colors.erase(colors.begin() + colors.size() - 1);
@@ -54,17 +55,31 @@ void input(){
         case SDLK_s: 
           canvas[canvas_set_y*canvas_size_y+canvas_set_x] = select_color;
         break;
+        case SDLK_d: 
+          canvas[canvas_set_y*canvas_size_y+canvas_set_x] = 255;
+        break;
       }
       else if(state == State::new_color)switch(event.key.keysym.sym){
           case SDLK_l:
-            
+            if((set == 1 && new_color_rgb[set] < 63) || new_color_rgb[set] < 31) new_color_rgb[set]++;
+            else new_color_rgb[set] = 0;
           break;
           case SDLK_k:
+            if(new_color_rgb[set] > 0) new_color_rgb[set]--;
+            else if(set == 1) new_color_rgb[set] = 63;
+            else new_color_rgb[set] = 31;
           break;
-
           case SDLK_j:
+            if(set > 0){
+              set--;
+            }
+            else set = 2;
           break;
           case SDLK_SEMICOLON:
+            if(set < 2){
+              set++;
+            }
+            else set = 0;
           break;
 
           case SDLK_a:
@@ -81,6 +96,9 @@ void input(){
             SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
             fullscreen = 1;
           }
+        break;
+        case SDLK_r:
+          save();    
         break;
       }
     }
