@@ -56,6 +56,39 @@ void paint_new_color(float size_x, float size_y){
   paint_new_color_text(2, part_start_x, part_x, part_start_y, part_y);
 };
 
+void paint_size_text_top(float part_start_x, float part_x, float part_start_y, float part_y){
+  if(set == 0)text("x", int(part_start_x + part_x * 0.2), int(part_start_y), 4, 5);
+  else text("x", int(part_start_x + part_x * 0.2), int(part_start_y), 0, 5);
+  if(set == 1)text("y", int(part_start_x + part_x * 1.2), int(part_start_y), 4, 5);
+  else text("y", int(part_start_x + part_x * 1.2), int(part_start_y), 0, 5);
+};
+
+void paint_size_text_bottom(float part_start_x, float part_x, float part_start_y, float part_y){
+  if(set == 0)text(std::to_string(canvas_size_x), int(part_start_x + part_x * 0.2), int(part_start_y), 4, 5);
+  else text(std::to_string(canvas_size_x), int(part_start_x + part_x * 0.2), int(part_start_y), 0, 5);
+  if(set == 1)text(std::to_string(canvas_size_y), int(part_start_x + part_x * 1.2), int(part_start_y), 4, 5);
+  else text(std::to_string(canvas_size_y), int(part_start_x + part_x * 1.2), int(part_start_y), 0, 5);
+};
+
+void paint_size(float size_x, float size_y){
+  float part_start_x = window_width / size_x;
+  float part_end_x = window_width - part_start_x;
+  float part_x = (part_end_x - part_start_x)/2;
+  float part_start_y = window_height / size_y;
+  float part_end_y = window_height - part_start_y;
+  float part_y = (part_end_y - part_start_y)/2;
+  
+  for(uint16_t i = part_start_y; i < part_start_y + part_y * 2; i++){
+    for(uint16_t j = part_start_x; j < part_start_x + part_x * 2; j++){
+      screen[i*window_width+j].first = 1;
+      screen[i*window_width+j].second = 8;
+    }
+  }
+
+  paint_size_text_top(part_start_x, part_x, part_start_y, part_y);
+  paint_size_text_bottom(part_start_x, part_x, part_start_y + part_y, part_y); 
+};
+
 void paint_canvas(){
   int start_y = 50;
   int end_y = window_height;
@@ -122,6 +155,9 @@ void screen_paint(){
   paint_canvas();
   if(state == State::new_color){
     paint_new_color(4, 4);
+  }
+  if(state == State::size){
+    paint_size(3, 4);
   }
 }
 

@@ -5,6 +5,11 @@
 #include<string>
 #include<fstream>
 
+void canvas_resize(){
+  canvas.resize(canvas_size_y*canvas_size_x);
+  for(auto &p: canvas) p = 255;
+}
+
 void save(){
   std::ofstream file("CGE_save.txt"); 
 

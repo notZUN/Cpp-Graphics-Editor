@@ -39,7 +39,12 @@ void input(){
             }
             else select_color = 0;
           break;
-          
+        
+        case SDLK_g:
+          state = State::size;
+          set = 0;
+        break;
+
         case SDLK_a:
           state = State::new_color;
           set = 0;
@@ -53,10 +58,10 @@ void input(){
         break;
 
         case SDLK_s: 
-          canvas[canvas_set_y*canvas_size_y+canvas_set_x] = select_color;
+          canvas[canvas_set_y*canvas_size_x+canvas_set_x] = select_color;
         break;
         case SDLK_d: 
-          canvas[canvas_set_y*canvas_size_y+canvas_set_x] = 255;
+          canvas[canvas_set_y*canvas_size_x+canvas_set_x] = 255;
         break;
       }
       else if(state == State::new_color)switch(event.key.keysym.sym){
@@ -83,6 +88,40 @@ void input(){
           break;
 
           case SDLK_a:
+            state = State::canvas;
+          break;
+      }
+      else if(state == State::size)switch(event.key.keysym.sym){
+          case SDLK_l:
+            if(set == 0)canvas_size_x++;
+            else canvas_size_y++;
+
+            canvas_resize();
+          break;
+          case SDLK_k:
+            if(set == 0)canvas_size_x--;
+            else canvas_size_y--;
+
+            canvas_resize();
+          break;
+          case SDLK_j:
+            if(set > 0){
+              set--;
+            }
+            else set = 1;
+
+            canvas_resize();
+          break;
+          case SDLK_SEMICOLON:
+            if(set < 1){
+              set++;
+            }
+            else set = 0;
+
+            canvas_resize();
+          break;
+
+          case SDLK_g:
             state = State::canvas;
           break;
       }

@@ -8,7 +8,8 @@
 //class 
 enum class State {
   canvas,
-  new_color
+  new_color,
+  size
 };
 
 //arrays & variables
@@ -40,5 +41,6 @@ extern void screen_paint();
 extern void screen_conversion();
 extern void text(std::string s, short x, short y, uint8_t col, uint8_t size);
 extern void save();
+extern void canvas_resize();
 
 #endif
